@@ -9,11 +9,10 @@ const getRandomNumber = (min, max) => {
 
 const useFetch = (url) => {
 
-    const lessPokemon = []
+    
     const [pokemon , setPokemon] = useState([])
-    const [loading , setLoading] = useState(true)
     const [error , setError] = useState("")
-    const [pokemonData , setPokemonData] = useState([])
+   
 
 
    useEffect(()=>{
@@ -33,7 +32,7 @@ const useFetch = (url) => {
         } catch (error) {
  
              setError(error.message)
-             setLoading(false)
+          
         }
          
      
@@ -44,32 +43,9 @@ const useFetch = (url) => {
      
    }, [url])
     
-   if(pokemon.length > 0 ){
-    console.log("charley -> ",pokemon.slice(0,5))
-    
-   }; 
-   
- try {
-
-
-  
-  // pokemon.slice(0,5).forEach(async (poke)=>{
-  //   const { url } = poke.pokemon
-  //   const newData = await fetch(url)
-  //   const pokemonResults = await newData.json();
-  //   lessPokemon.push(pokemonResults);
-
-  //   console.log("first-> ", pokemonResults)
-
-  //  })
-
- } catch (error) {
-  
-  console.log(error.message)
- }
 
   return (
-    [pokemon.slice(0,5), loading , error]
+    [pokemon.slice(0,5), error ]
   )
 }
 

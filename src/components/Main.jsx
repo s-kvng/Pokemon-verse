@@ -34,7 +34,7 @@ const types = [
 const Main = () => {
   
   //first API call
-  const [pokemon, loading, error] = useFetch(
+  const [ pokemon ] = useFetch(
     "https://pokeapi.co/api/v2/type/normal"
   );
 
