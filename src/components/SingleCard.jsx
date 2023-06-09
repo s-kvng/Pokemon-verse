@@ -11,13 +11,13 @@ const SingleCard = ({ pokemon, index }) => {
     <>
       <div
         key={index}
-        className="single-card shadow-blueShadow flex flex-col h-[360px] max-w-[318px] min-w-[248px] p-4  rounded-[8px]"
+        className="single-card shadow-blueShadow flex flex-col h-[360px] max-w-[318px] min-w-[248px] p-4  rounded-[8px] mx-auto"
       >
         <div
           style={{
             backgroundImage: `url(${pokemon.sprites.other["official-artwork"].front_default})`,
           }}
-          className="image-card bg-contain bg-no-repeat bg-center h-[100%] w-[100%]
+          className="image-card bg-contain bg-no-repeat bg-center h-[100%] w-[100%] hover:animate-bounce
          "
         ></div>
 
@@ -25,7 +25,7 @@ const SingleCard = ({ pokemon, index }) => {
         <div className="discription flex gap-[50px] pt-2">
           <h2 className="text-xl font-bold">{pokemon.forms[0].name}</h2>
           <div className="like">
-            <a href="">
+            <a href="" className=" ">
               <i className="">
                 <IoMdHeart size={20} className=" text-sky-600" />
               </i>
