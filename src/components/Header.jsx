@@ -22,7 +22,7 @@ const Header = () => {
         <div className="flex justify-evenly w-[80%] text-2xl font-semibold">
             { links.map((link, index)=>{
                 return(
-                    <div className="">
+                    <div className="" key={index}>
                         <a href={link.path}>{link.name}</a>
                     </div>
                 )

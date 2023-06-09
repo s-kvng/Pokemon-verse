@@ -1,4 +1,7 @@
-const totalObjects = getRandomNumber(1, Math.min(pokemon.length, 50));
+import React from 'react'
+
+
+        const totalObjects = getRandomNumber(1, Math.min(pokemon.length, 50));
          pokemon.slice(1 , totalObjects).forEach(async (poke)=>{
            
            const { url } = poke.pokemon
@@ -14,13 +17,13 @@ const totalObjects = getRandomNumber(1, Math.min(pokemon.length, 50));
        
          })
 
+const test = () => {
+  return (
+    <div>test</div>
+  )
+}
 
-         import React from 'react'
-         
-         const test = () => {
-           return (
-            
-           )
-         }
-         
-         export default test
+export default test
+
+
+    

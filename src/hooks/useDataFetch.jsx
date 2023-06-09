@@ -1,35 +1,52 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 
 const useDataFetch = (pokemon) => {
+
+  console.log("get -> ",pokemon)
   const [pokemonData, setPokemonData] = useState([]);
   const [loading , setLoading] = useState(true)
+  const [isError , setIsError ] = useState("")
+  const pokemonRef = useRef(pokemon);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
 
-  const fetchData = async () => {
+
+
+  const pokemonFetchData = useCallback( async () => {
    
-
-    const promises = pokemon.map(async (item) => {
-        const { url } = item.pokemon
-      const response = await fetch(url);
-      const pokemon = await response.json();
-      return pokemon;
-    });
-
+    
     try {
-      const pokemonList = await Promise.all(promises);
-      console.log(pokemonList)
-      setPokemonData(pokemonList);
+      
+
+      const pokemonList = [];
+      for (const items of pokemon ){
+        const { url } = items.pokemon
+        const response = await fetch(url)
+        const data = await response.json()
+        console.log("data=>",data)
+        pokemonList.push(data)
+      }
+
+        setPokemonData(pokemonList);
+        setLoading(false)
 
     } catch (error) {
-      console.error(error);
+      console.log("error")
+      setIsError(error.message)
+      setLoading(false)
     }
-  };
+   
+  }, []);
+
+
+
+  useEffect(()=>{
+  
+  pokemonFetchData();
+
+},[pokemonFetchData])
 
   return (
-   [pokemonData]
+   [pokemonData, loading ,isError]
   );
 };
 

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+
 //components
 import SingleCard from "./SingleCard";
 
@@ -27,26 +28,20 @@ const types = [
   { name: "fairy" },
 ];
 
-
-
-
-
 const Main = () => {
-  
+
+  const [selectedValue , setSelectedValue] = useState("")
+
+  const onSelectChange = (e) =>{
+    setSelectedValue(e.target.value)
+    console.log("select->",selectedValue  )
+  }
+
+
   //first API call
-  const [ pokemon ] = useFetch(
-    "https://pokeapi.co/api/v2/type/normal"
-  );
+  const [pokemonData, loading] = useFetch(`https://pokeapi.co/api/v2/type/${selectedValue}`);
 
 
-  //second API call
-    const [ pokemonData ] = useDataFetch(pokemon)
-    console.log("this->",pokemonData)
-  
-
-
-
-      
 
 
   return (
@@ -56,6 +51,7 @@ const Main = () => {
           Choose the type of pokemon
         </label>
         <select
+          onChange={onSelectChange}
           name="types"
           id="type-selection"
           className="focus:ring-0 outline-0 rounded-[8px] p-1 w-[50%] shadow-lg cursor-pointer text-center"
@@ -75,11 +71,19 @@ const Main = () => {
       <div className="container mx-auto ">
         <div className="grid md:grid-cols-3 grid-cols-1 gap-8 px-16">
 
-           {pokemonData.map((pokemonInfo, index)=>(
-            <SingleCard pokemon={pokemonInfo} index={index}/>
-           ))}
-            
-         
+          
+
+{loading ?  ( <span> {'loading...'}</span>)
+      : (
+       
+        pokemonData.map((pokemonInfo, index) => (
+          <div key={index}>
+            <SingleCard pokemon={pokemonInfo} index={index} />
+          </div>
+        ))
+      )
+      }
+
         </div>
       </div>
     </section>

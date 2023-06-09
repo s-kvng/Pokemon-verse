@@ -1,52 +1,44 @@
-import React , {useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 //get random number function
 const getRandomNumber = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
+const useDataFetch = (url) => {
+  const [pokemonData, setPokemonData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
-
-const useFetch = (url) => {
-
-    
-    const [pokemon , setPokemon] = useState([])
-    const [error , setError] = useState("")
-   
-
-
-   useEffect(()=>{
-
+  useEffect(() => {
     const fetchData = async () => {
+      try {
+        const dataResponse = await fetch(url);
+        const data = await dataResponse.json();
+        const pokemonList = [];
 
-        try {
-         
-         const data = await fetch(url)
-         const results = await data.json();
-         
-         if(results){
-             setPokemon((pokemon)=>results.pokemon);
-         }
         
- 
-        } catch (error) {
- 
-             setError(error.message)
-          
+        const totalObjects = getRandomNumber(1, Math.min(data.pokemon.length, 50));
+        
+
+        for (const item of data.pokemon.slice(0, totalObjects)) {
+          const pokemonResponse = await fetch(item.pokemon.url);
+          const pokemon = await pokemonResponse.json();
+          pokemonList.push(pokemon);
         }
-         
-     
-   }
 
-     fetchData();
+        setPokemonData(pokemonList);
+        setLoading(false);
+      } catch (error) {
+        setError(error.message);
+        setLoading(false);
+      }
+    };
 
-     
-   }, [url])
-    
+    fetchData();
+  }, [url]);
 
-  return (
-    [pokemon.slice(0,5), error ]
-  )
-}
+  return [pokemonData, loading, error];
+};
 
-export default useFetch
+export default useDataFetch;
