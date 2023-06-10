@@ -1,12 +1,21 @@
-import React from "react";
+import React , {useState} from "react";
 
 //icons
 import { IoMdHeart } from "react-icons/io";
 
 //components
 import Button from "./Button";
+import Modal from "./Modal";
 
 const SingleCard = ({ pokemon, index }) => {
+
+  const [openModal , setOpenModal] = useState(false)
+
+  const handleClick = () => {
+    setOpenModal(true)
+  }
+
+
   return (
     <>
       <div
@@ -35,13 +44,14 @@ const SingleCard = ({ pokemon, index }) => {
         </div>
         <div className="poke-action pt-4 ">
           <div className="mb-4">
-            <Button />
+            <Button onClick={handleClick}  name="Infomation"/>
           </div>
           <div className="comment-btn">
             <Button />
           </div>
         </div>
       </div>
+      {openModal && <Modal pokemon={pokemon}/>}
     </>
   );
 };

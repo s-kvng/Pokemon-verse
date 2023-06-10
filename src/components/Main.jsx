@@ -5,7 +5,7 @@ import Select from "react-select";
 
 //components
 import SingleCard from "./SingleCard";
-import Modal from "./Modal"
+
 
 //custom hooks
 import useFetch from "../hooks/useFetch";
@@ -35,6 +35,7 @@ const Main = () => {
 
   const [selectedValue , setSelectedValue] = useState("")
   const [secondLoading , setSecondLoading ] = useState(true)
+  
 
   const onSelectChange = (selectedOptions) =>{
     setSecondLoading(true)
@@ -69,15 +70,16 @@ const Main = () => {
        
         pokemonData.map((pokemonInfo, index) => (
           <div key={index}>
-            <SingleCard pokemon={pokemonInfo} index={index} />
+            <SingleCard pokemon={pokemonInfo} index={index}  />
           </div>
+             
         ))
       )
       }
 
         </div>
       </div>
-     
+    
     </section>
   );
 };
