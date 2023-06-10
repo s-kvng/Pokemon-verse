@@ -1,76 +1,44 @@
-import React , {useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 //get random number function
 const getRandomNumber = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
+const useDataFetch = (url) => {
+  const [pokemonData, setPokemonData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
-
-const useFetch = (url) => {
-
-    const lessPokemon = []
-    const [pokemon , setPokemon] = useState([])
-    const [loading , setLoading] = useState(true)
-    const [error , setError] = useState("")
-    const [pokemonData , setPokemonData] = useState([])
-
-
-   useEffect(()=>{
-
+  useEffect(() => {
     const fetchData = async () => {
+      try {
+        const dataResponse = await fetch(url);
+        const data = await dataResponse.json();
+        const pokemonList = [];
 
-        try {
-         
-         const data = await fetch(url)
-         const results = await data.json();
-         
-         if(results){
-             setPokemon((pokemon)=>results.pokemon);
-         }
         
- 
-        } catch (error) {
- 
-             setError(error.message)
-             setLoading(false)
+        const totalObjects = getRandomNumber(1, Math.min(data.pokemon.length, 50));
+        
+
+        for (const item of data.pokemon.slice(0, totalObjects)) {
+          const pokemonResponse = await fetch(item.pokemon.url);
+          const pokemon = await pokemonResponse.json();
+          pokemonList.push(pokemon);
         }
-         
-     
-   }
 
-     fetchData();
+        setPokemonData(pokemonList);
+        setLoading(false);
+      } catch (error) {
+        setError(error.message);
+        setLoading(false);
+      }
+    };
 
-     
-   }, [url])
-    
-   if(pokemon.length > 0 ){
-    console.log("charley -> ",pokemon.slice(0,5))
-    
-   }; 
-   
- try {
+    fetchData();
+  }, [url]);
 
+  return [pokemonData, loading, error];
+};
 
-  
-  // pokemon.slice(0,5).forEach(async (poke)=>{
-  //   const { url } = poke.pokemon
-  //   const newData = await fetch(url)
-  //   const pokemonResults = await newData.json();
-  //   lessPokemon.push(pokemonResults);
-
-  //   console.log("first-> ", pokemonResults)
-
-  //  })
-
- } catch (error) {
-  
-  console.log(error.message)
- }
-
-  return (
-    [pokemon.slice(0,5), loading , error]
-  )
-}
-
-export default useFetch
+export default useDataFetch;
