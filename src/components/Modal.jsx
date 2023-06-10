@@ -5,6 +5,7 @@ import React , {useRef, useEffect} from "react";
 
 const Modal = ({ pokemon, setOpenModal }) => {
 
+    console.log(pokemon)
     const modalWrapperRef = useRef(null);
     
 
@@ -23,6 +24,15 @@ const Modal = ({ pokemon, setOpenModal }) => {
 
    types()
    
+   //get games  
+   const games = [];
+   if (pokemon.game_indices.length === 0) {
+     games.push('has not appear yet or is on new games');
+   } else {
+     for (let index = 0; index < 2; index += 1) {
+       games.push(`${pokemon.game_indices[index].version.name}`);
+     }
+   }
 
 //Close Modal
   useEffect(() => {
@@ -69,7 +79,7 @@ const Modal = ({ pokemon, setOpenModal }) => {
             <span className="font-semibold">Base exp: </span> {pokemon.base_experience}
           </p>
           <p>
-            <span className="font-semibold">games: </span>ushdu
+            <span className="font-semibold">games: </span>{games.join(', ')}
           </p>
         </div>
       </div>

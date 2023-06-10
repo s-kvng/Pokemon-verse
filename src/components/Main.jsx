@@ -52,7 +52,7 @@ const Main = () => {
 
 
   return (
-    <section className=" h-[75vh] md:h-[72vh] max-[72vh] min-[72vh] rounded-[8px] bg-navGrad overflow-y-scroll mb-5 md:mb-2">
+    <section className=" custom-scrollbar h-[75vh] md:h-[72vh] max-[72vh] min-[72vh] rounded-[8px] bg-navGrad overflow-y-scroll mb-5 md:mb-2">
       <div className="text-center mb-4 flex md:flex-row flex-col items-center justify-center">
         <label htmlFor="type-selection" className="text-zinc-500 me-2">
           Choose the type of pokemon
