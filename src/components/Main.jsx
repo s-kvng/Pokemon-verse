@@ -63,7 +63,7 @@ const Main = () => {
       <div className="container mx-auto ">
         <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 md:gap-8 gap-y-8   px-16">
 
-          {secondLoading && <span>{'Loading New Pokemons...'}</span>}
+          {secondLoading && <span>{'Choose a type and get to know all the pokemons...'}</span>}
 
 {loading ?  ( <span> {'loading...'}</span>)
       : (
