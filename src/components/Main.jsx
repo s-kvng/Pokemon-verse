@@ -52,7 +52,7 @@ const Main = () => {
 
 
   return (
-    <section className=" h-[75vh] md:h-[72vh] max-[72vh] min-[72vh] rounded-[8px] bg-navGrad overflow-y-scroll mb-5 md:mb-2">
+    <section className=" custom-scrollbar h-[75vh] md:h-[72vh] max-[72vh] min-[72vh] rounded-[8px] bg-navGrad overflow-y-scroll mb-5 md:mb-2">
       <div className="text-center mb-4 flex md:flex-row flex-col items-center justify-center">
         <label htmlFor="type-selection" className="text-zinc-500 me-2">
           Choose the type of pokemon
@@ -63,7 +63,7 @@ const Main = () => {
       <div className="container mx-auto ">
         <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 md:gap-8 gap-y-8   px-16">
 
-          {secondLoading && <span>{'Loading New Pokemons...'}</span>}
+          {secondLoading && <span>{'Choose a type and get to know all the pokemons...'}</span>}
 
 {loading ?  ( <span> {'loading...'}</span>)
       : (

@@ -47,11 +47,11 @@ const SingleCard = ({ pokemon, index }) => {
             <Button onClick={handleClick}  name="Infomation"/>
           </div>
           <div className="comment-btn">
-            <Button />
+            <Button  name="Comment"/>
           </div>
         </div>
       </div>
-      {openModal && <Modal pokemon={pokemon}/>}
+      {openModal && <Modal pokemon={pokemon} setOpenModal={setOpenModal}/>}
     </>
   );
 };
