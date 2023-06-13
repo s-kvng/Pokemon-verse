@@ -20,7 +20,7 @@
 
 
 ### Click link below for a live demo
-[Demo Link](https://fourteen98.github.io/Pokemon/dist/)
+[Demo Link](pokemon-verse.netlify.app)
 
 ## Getting Started
 
