@@ -5,7 +5,7 @@ import React , {useRef, useEffect} from "react";
 
 const Modal = ({ pokemon, setOpenModal }) => {
 
-    console.log(pokemon)
+   
     const modalWrapperRef = useRef(null);
     
 
@@ -56,7 +56,7 @@ const Modal = ({ pokemon, setOpenModal }) => {
   return (
     <div ref={modalWrapperRef} className="modalWrapper w-full h-full fixed top-[50%] left-[50%] z-99 backdrop-blur-sm translate-x-[-50%] translate-y-[-50%]">
       <div
-        className="modal bg-bgModal  w-[40%]  fixed top-[50%] left-[50%] translate-x-[-50%] 
+        className="modal bg-bgModal  w-[80%] md:w-[40%]  fixed top-[50%] left-[50%] translate-x-[-50%] 
         translate-y-[-50%] rounded-[35px] flex flex-col items-center p-1 animate-[modalAnimation_1s_ease-in-out]"
       >
         <div className="w-[70%] mx-auto">
